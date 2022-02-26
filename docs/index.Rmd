@@ -5,19 +5,23 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-source("analysis.R")
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r echo=FALSE, include=FALSE}
+source("../source/analysis.R")
+library(knitr)
 ```
 
 ## Introduction and Summary Statistics 
 
 Justice is currently a prominent value to uphold. In order to deconstruct racism, we must understand how different systems are currently affecting BIPOC populations. Here, within this conducted research, we debunk different statistics that pertain to our US justice system. Within this assignment, I wanted to grasp a better understanding of different statistics of different jailed populations from different people of color.
 
-latinx_jail_pop: Finds the jailed population of Latinx folks
-aapi_jail_pop: Finds the jailed population of AAPI folks
-white_jail_pop: Finds the jailed population of White folks
-female_adult_jail_pop: Finds the jailed population of female adults
-female_pop_15to64: Finds the jailed population of females from ages 15 to 64
+<br /> latinx_jail_pop: Finds the jailed population of Latinx folks
+<br /> aapi_jail_pop: Finds the jailed population of AAPI folks
+<br /> white_jail_pop: Finds the jailed population of White folks
+<br /> female_adult_jail_pop: Finds the jailed population of female adults
+<br /> female_pop_15to64: Finds the jailed population of females from ages 15 to 64
 
 Within the research, we were able to find more demographics and convey what these statistics mean.
 
@@ -37,8 +41,8 @@ Within the research, we were able to find more demographics and convey what thes
 While diving deeper in the lens of Latinx folks, we wanted to be able to compare the total jailed population to get more insight of the comparison of Latinx folks to the Total Jailed population
 
 ```{r echo = F}
-source("analysis.R")
-trend_chart
+source("../source/analysis.R")
+plot(trend_chart)
 ```
 
 Overtime, it showed that within this chart comparing the total amount of people who were jailed to that of the population of Latinx folks, there was a significant difference. Within the graph you can see that the total amount is roughly 6 times as much as to Latinx folks. Here it depicted a large growth and a similar declination over the more recent years, but it followed the main trend of the total jailed population. 
@@ -49,18 +53,18 @@ Overtime, it showed that within this chart comparing the total amount of people 
 Here, I wanted to learn about folks who have similar backgrounds to me. As an Asian American, I wanted to compare the statistics of AAPI folks who are jailed to our white counterparts. 
 
 ```{r echo = F}
-source("analysis.R")
-aapi_vs_white_jp_comparison
+source("../source/analysis.R")
+plot(aapi_vs_white_jp_comparison)
 ```
-When plotting this chart, it took in consideration depicting the amount of White folks to AAPI folks who are currently jailed. From the chart, you can see that there is a a large difference of having more White people who are currently in jail compared to AAPI folks. Within the graph, the White Jailed population reaches numbers that are roughly 5 times as much to the AAPI Jailed Population.
+<br /> When plotting this chart, it took in consideration depicting the amount of White folks to AAPI folks who are currently jailed. From the chart, you can see that there is a a large difference of having more White people who are currently in jail compared to AAPI folks. Within the graph, the White Jailed population reaches numbers that are roughly 5 times as much to the AAPI Jailed Population.
 
 ## Mapping: Mapping: Map the Black total Jail Population within the year 2017 and Map the Total Male Jail Population within the year 2017
 
 Lastly, I wanted to portray another important statistic that may not be understandable through just seeing logistical numbers. Here, I wanted to include two maps to illustrate some injustices when it comes to seeing our US justice system. 
 
 ```{r echo = F}
-source("analysis.R")
-black_jp_map
-total_male_jp_map
+source("../source/analysis.R")
+plot(black_jp_map)
+plot(total_male_jp_map)
 ```
-Throughout these two map, it shows that there are many similarities when looking at them. Within the maps it depicts that if a state has more color, there is a larger population of either male jailed populations if you are looking at the total_male_jp_map or Black folks within the black_jp_map. Within these two maps, there are striking similarities to the colors of the different region of the States.
+<br /> Throughout these two map, it shows that there are many similarities when looking at them. Within the maps it depicts that if a state has more color, there is a larger population of either male jailed populations if you are looking at the total_male_jp_map or Black folks within the black_jp_map. Within these two maps, there are striking similarities to the colors of the different region of the States. Within the Southern region of the states, there is more purple shading indicating that the prevalence of Jailed folks is at a larger amount within that region. 

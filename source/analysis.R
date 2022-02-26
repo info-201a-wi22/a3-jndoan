@@ -118,7 +118,6 @@ wa_highest_county_female_pop_15to64 <- county_highest_female_pop_15to64(wa_data)
 
 
 # Time Trend Chart: Chart the trend of jailed population of latinx folk vs. the total population of jailed folks since 2000 to 2018
-trend_chart
 trend_comparison <- county_level_data %>%
   filter(year >= 2000 & year <= 2018) %>%
   group_by(year) %>%
@@ -136,9 +135,7 @@ trend_chart <- ggplot(data = trend_comparison) +
     values = c("Latinx" = "darkred", "Total" = "steelblue")
   )
 
-
 # Variable Comparison Chart: Compare the total of the total aapi jailed populations at each county vs. white jailed populations
-aapi_vs_white_jp_comparison
 aapi_vs_white_comparison_data <- county_level_data %>%
   filter(!is.na(aapi_jail_pop)) %>%
   filter(!is.na(white_jail_pop)) %>%
@@ -189,8 +186,6 @@ black_jp_map <- ggplot(map_data) +
   labs(fill = "2017 Black Jail Population") +
   ggtitle("2017 US Black Jailed Population")
 
-black_jp_map
-
 total_male_jp_map <- ggplot(map_data) +
   geom_polygon(
     mapping = aes(x = long, y = lat, group = group, fill = male_jail_pop),
@@ -200,9 +195,6 @@ total_male_jp_map <- ggplot(map_data) +
   scale_fill_continuous(limits = c(0, max(map_data$male_jail_pop)), 
                         na.value = "white", low = "pink", high = "purple") +
   blank_theme +
-  labs(fill = "Total Male Jail Population") +
+  labs(fill = "2017 Total Male Jailed Population") +
   ggtitle("2017 US Total Male Jailed Population")
-
-total_male_jp_map
-
 
