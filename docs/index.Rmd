@@ -1,7 +1,6 @@
 ---
 title: "Data Visulization (Incarceration)"
 author: "James Doan"
-date: "02/25/2022"
 output: html_document
 ---
 
@@ -12,7 +11,7 @@ source("analysis.R")
 
 ## Introduction and Summary Statistics 
 
-Justice is currently a prominent value to uphold. In order to deconstruct racism, we must understand how different systems are currently affecting BIPOC populations. Here, within this conducted research, we debunk different statistics that pertain to our US justice system. Within this assignment, I wanted to grasp a better understanding of different statistcits of different jailed populations from different people of color.
+Justice is currently a prominent value to uphold. In order to deconstruct racism, we must understand how different systems are currently affecting BIPOC populations. Here, within this conducted research, we debunk different statistics that pertain to our US justice system. Within this assignment, I wanted to grasp a better understanding of different statistics of different jailed populations from different people of color.
 
 latinx_jail_pop: Finds the jailed population of Latinx folks
 aapi_jail_pop: Finds the jailed population of AAPI folks
@@ -22,17 +21,16 @@ female_pop_15to64: Finds the jailed population of females from ages 15 to 64
 
 Within the research, we were able to find more demographics and convey what these statistics mean.
 
-* What is the change of the proportion of jailed population of latinx folks to the total population of folks between 1990 and 2018?
-<br /> __Answer:__ `r latinx_prop_change`
-
-* What is the change of the proportion of jailed population of aapi folks to the total population of folks between 1990 and 2018?
-<br /> __Answer:__ `r aapi_prop_change`
-* What is the change of the proportion of jailed population of white folks to the total population of folks between 1990 and 2018?
-<br /> __Answer:__ `r white_prop_change`
+* What is the change of the proportion of jailed population of Latinx folks to the total population of folks between 1990 and 2018?
+<br /> _Answer:_ `r latinx_prop_change`
+* What is the change of the proportion of jailed population of AAPI folks to the total population of folks between 1990 and 2018?
+<br /> _Answer:_ `r aapi_prop_change`
+* What is the change of the proportion of jailed population of White folks to the total population of folks between 1990 and 2018?
+<br /> _Answer:_ `r white_prop_change`
 * Which county in New York State had the most total population of jailed females?
-<br /> __Answer:__ `r ny_highest_county_female_adult_jail_pop`
+<br /> _Answer:_ `r ny_highest_county_female_adult_jail_pop`
 *  Which county in Washington state had the most total population between 15-64 year old Females?
-<br /> __Answer:__ `r wa_highest_county_female_pop_15to64`
+<br /> _Answer:_ `r wa_highest_county_female_pop_15to64`
 
 ## Time Trend Chart: Chart the trend of jailed population of latinx folk vs. the total population of jailed folk within the years of 2000 to 2018
 
@@ -43,7 +41,7 @@ source("analysis.R")
 trend_chart
 ```
 
-Overtime, it showed that within this chart comparing the total amount of people who were jailed to that of the population of Latinx folks, there was a significant difference. Within the graph you can see that the total amount is roughly 6 times as much as to Latinx folks. Here it depicted a large growth and a simlar declination over the more recent years, but it followed the main trend of the total jailed population. 
+Overtime, it showed that within this chart comparing the total amount of people who were jailed to that of the population of Latinx folks, there was a significant difference. Within the graph you can see that the total amount is roughly 6 times as much as to Latinx folks. Here it depicted a large growth and a similar declination over the more recent years, but it followed the main trend of the total jailed population. 
 
 
 ## Variable Comparison Chart: Compare the total of the total aapi jailed populations at each county vs. white jailed populations
