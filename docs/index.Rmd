@@ -1,28 +1,67 @@
 ---
-title: "index.RMD"
+title: "Data Visulization (Incarceration)"
+author: "James Doan"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r echo = F}
+source("analysis.r")
+
+library(knitr)
 ```
 
-## R Markdown
+## Summary Statistics
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+Justice is currently a prominent value to uphold. In order to deconstruct racism, we must understand how different systems are currently affecting BIPOC populations. Here, within this conducted research, we debunk different statistics that pertain to our US justice system.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+latinx_jail_pop: Finds the jailed population of Latinx folks
+aapi_jail_pop: Finds the jailed population of AAPI folks
+white_jail_pop: Finds the jailed population of White folks
+female_adult_jail_pop: Finds the jailed population of female adults
+female_pop_15to64: Finds the jailed population of females from ages 15 to 64
 
-```{r cars}
-summary(cars)
+Within the research, we were able to find more demographics and convey what these statistics mean.
+
+* What is the change of the proportion of jailed population of latinx folks to the total population of folks between 1990 and 2018?
+<br /> __Answer:__ `r latinx_prop_change`
+
+* What is the change of the proportion of jailed population of aapi folks to the total population of folks between 1990 and 2018?
+<br /> __Answer:__ `r aapi_prop_change`
+* What is the change of the proportion of jailed population of white folks to the total population of folks between 1990 and 2018?
+<br /> __Answer:__ `r white_prop_change`
+* Which county in New York State had the most total population of jailed females?
+<br /> __Answer:__ `r ny_highest_county_female_adult_jail_pop`
+*  Which county in Washington state had the most total population between 15-64 year old Females?
+<br /> __Answer:__ `r wa_highest_county_female_pop_15to64`
+
+## Time Trend Chart: Chart the trend of jailed population of latinx folk vs. the total population of jailed folks since 2000 to 2018
+
+While diving deeper in the lens of Latinx folks...
+
+```{r echo=F}
+source("analysis.r")
+trend_chart
 ```
 
-## Including Plots
+Within this chart, it depicted that ...
 
-You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+## Variable Comparison Chart: Compare the total of the total aapi jailed populations at each county vs. white jailed populations
+
+Here, I wanted to learn about folks who have similar backgrounds to me. As an Asian American, I wanted to compare the statistics of AAPI folks who are jailed to our white counterparts.
+
+```{r echo=F}
+source("analysis.r")
+aapi_vs_white_jp_comparison
 ```
+When plotting this chart, it took in consideration...
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+## Mapping: Mapping: Map the Black total Jail Population within the year 2017 and Map the Total Male Jail Population within the year 2017
+
+Lastly, I wanted to portray another important statistic that may not be understandable through just seeing logistical numbers. Here, I wanted to include two maps to illustrate some injustices when it comes to seeing our US justice system. 
+
+```{r echo=F}
+source("analysis.r")
+black_jp_map
+total_male_jp_map
+```

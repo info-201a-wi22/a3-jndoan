@@ -1,7 +1,10 @@
 library("dplyr")
 library("tidyr")
 library("ggplot2")
-
+install.packages("maps")
+install.packages("mapproj")
+library("maps")
+library("mapproj")
 
 county_level_data <- read.csv("https://raw.githubusercontent.com/vera-institute/incarceration-trends/master/incarceration_trends.csv")
 jurisdiction_level_data <- read.csv("https://raw.githubusercontent.com/vera-institute/incarceration-trends/master/incarceration_trends_jail_jurisdiction.csv")
@@ -100,7 +103,7 @@ county_highest_female_adult_jail_pop <- function(county_level_data) {
     pull(county_name)
 }
 
-by_highest_county_female_adult_jail_pop <- county_highest_female_adult_jail_pop(ny_data)
+ny_highest_county_female_adult_jail_pop <- county_highest_female_adult_jail_pop(ny_data)
 
 
 # Summary Statistic 5: Which county in Washington state had the most total population between 15-64 year old Females
@@ -116,12 +119,92 @@ county_highest_female_pop_15to64 <- function(county_level_data) {
 wa_highest_county_female_pop_15to64 <- county_highest_female_pop_15to64(wa_data)
 
 
-# Time Trend Chart would be a total population over an amount of time
+# Time Trend Chart: Chart the trend of jailed population of latinx folk vs. the total population of jailed folks since 2000 to 2018
+trend_chart
+trend_comparison <- county_level_data %>%
+  filter(year >= 2000 & year <= 2018) %>%
+  group_by(year) %>%
+  summarise(
+    ltx_jp = sum(latinx_jail_pop, na.rm = TRUE),
+    total_jp = sum(total_jail_pop, na.rm = TRUE)
+  ) %>%
+  select(year, ltx_jp, total_jp)
+trend_chart <- ggplot(data = trend_comparison) +
+  geom_line(aes(y = ltx_jp, x = year, colour = "Latinx")) +
+  geom_line(aes(y = total_jp, x = year, colour = "Total")) +
+  labs(x = "Year", y = "Jailed Population", title = "Latinx Jailed Population vs. Total Jailed Population, Years 2000 vs 2018") +
+  scale_color_manual(
+    name = "Line Representation",
+    values = c("Latinx" = "darkred", "Total" = "steelblue")
+  )
 
 
-# Variable Comparison compare two races
+# Variable Comparison Chart: Compare the total of the total aapi jailed populations at each county vs. white jailed populations
+aapi_vs_white_jp_comparison
+aapi_vs_white_comparison_data <- county_level_data %>%
+  filter(!is.na(aapi_jail_pop)) %>%
+  filter(!is.na(white_jail_pop)) %>%
+  select(white_jail_pop, aapi_jail_pop)
+aapi_vs_white_jp_comparison <- ggplot(data = aapi_vs_white_comparison_data) +
+  aes(y = white_jail_pop, x = aapi_jail_pop) +
+  geom_point() +
+  geom_smooth(method = lm) +
+  labs(
+    x = "AAPI Jailed Population", y = "White Jailed Population",
+    title = "AAPI Jailed Population vs. Total Population, White"
+  )
 
+# Mapping: Map the Black total Jail Population within the year 2017 and Map the Total Male Jail Population within the year 2017
 
-# Map
+updated_county <- county_level_data %>%
+  group_by(county_name) %>%
+  filter(year == 2017)
+
+county_shapes <- map_data("county") %>%
+  unite(polyname, region, subregion, sep = ",") %>%
+  left_join(county.fips, by = "polyname")
+
+map_data <- county_shapes %>%
+  left_join(updated_county, by = "fips")
+
+blank_theme <- theme_bw() +
+  theme ( 
+    axis.line = element_blank(),
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    axis.title = element_blank(),
+    plot.background = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank (),
+    panel.border = element_blank()
+  )
+
+black_jp_map <- ggplot(map_data) +
+  geom_polygon(
+    mapping = aes(x = long, y = lat, group = group, fill = black_jail_pop),
+    color = "blue", size = 0.5
+  ) +
+  coord_map() +
+  scale_fill_continuous(limits = c(0, max(map_data$black_jail_pop)), 
+                        na.value = "white", low = "pink", high = "purple") +
+  blank_theme +
+  labs(fill = "2017 Black Jail Population") +
+  ggtitle("2017 US Black Jailed Population")
+
+black_jp_map
+
+total_male_jp_map <- ggplot(map_data) +
+  geom_polygon(
+    mapping = aes(x = long, y = lat, group = group, fill = male_jail_pop),
+    color = "blue", size = 0.5
+  ) +
+  coord_map() +
+  scale_fill_continuous(limits = c(0, max(map_data$male_jail_pop)), 
+                        na.value = "white", low = "pink", high = "purple") +
+  blank_theme +
+  labs(fill = "White Jail Population") +
+  ggtitle("2017 US Total Male Jailed Population")
+
+total_male_jp_map
 
 
