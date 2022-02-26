@@ -1,8 +1,6 @@
 library("dplyr")
 library("tidyr")
 library("ggplot2")
-install.packages("maps")
-install.packages("mapproj")
 library("maps")
 library("mapproj")
 
@@ -202,7 +200,7 @@ total_male_jp_map <- ggplot(map_data) +
   scale_fill_continuous(limits = c(0, max(map_data$male_jail_pop)), 
                         na.value = "white", low = "pink", high = "purple") +
   blank_theme +
-  labs(fill = "White Jail Population") +
+  labs(fill = "Total Male Jail Population") +
   ggtitle("2017 US Total Male Jailed Population")
 
 total_male_jp_map
